@@ -1,4 +1,4 @@
-package com.iqbalansyor.flower_ai
+package com.iqbalansyor.fruit_ai
 
 import android.content.Context
 import android.graphics.Bitmap

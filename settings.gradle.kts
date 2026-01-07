@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "flower_ai"
+rootProject.name = "fruit_ai"
 include(":app")
  

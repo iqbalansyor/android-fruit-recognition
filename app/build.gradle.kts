@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.iqbalansyor.flower_ai"
+    namespace = "com.iqbalansyor.fruit_ai"
     compileSdk = 36
 
     // Prevent compressing TFLite model files
@@ -14,7 +14,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.iqbalansyor.flower_ai"
+        applicationId = "com.iqbalansyor.fruit_ai"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -25,7 +25,8 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

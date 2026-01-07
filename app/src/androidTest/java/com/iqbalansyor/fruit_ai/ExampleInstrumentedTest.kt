@@ -1,4 +1,4 @@
-package com.iqbalansyor.flower_ai
+package com.iqbalansyor.fruit_ai
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.iqbalansyor.flower_ai", appContext.packageName)
+        assertEquals("com.iqbalansyor.fruit_ai", appContext.packageName)
     }
 }

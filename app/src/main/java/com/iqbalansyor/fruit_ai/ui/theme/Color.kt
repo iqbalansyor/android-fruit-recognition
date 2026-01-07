@@ -1,4 +1,4 @@
-package com.iqbalansyor.flower_ai.ui.theme
+package com.iqbalansyor.fruit_ai.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

@@ -1,4 +1,4 @@
-package com.iqbalansyor.flower_ai
+package com.iqbalansyor.fruit_ai
 
 import android.Manifest
 import android.graphics.Bitmap
@@ -54,7 +54,7 @@ import androidx.core.content.FileProvider
 import java.io.File
 
 @Composable
-fun FlowerRecognitionScreen(modifier: Modifier = Modifier) {
+fun FruitRecognitionScreen(modifier: Modifier = Modifier) {
     val context = LocalContext.current
     var selectedImageBitmap by remember { mutableStateOf<Bitmap?>(null) }
     var recognitionResult by remember { mutableStateOf<String?>(null) }
@@ -65,7 +65,7 @@ fun FlowerRecognitionScreen(modifier: Modifier = Modifier) {
 
     // Create a temporary file for camera capture
     val tempImageFile = remember {
-        File.createTempFile("flower_", ".jpg", context.cacheDir).apply {
+        File.createTempFile("fruit_", ".jpg", context.cacheDir).apply {
             deleteOnExit()
         }
     }
@@ -145,7 +145,7 @@ fun FlowerRecognitionScreen(modifier: Modifier = Modifier) {
     ) {
         // Title
         Text(
-            text = "Flower Recognition",
+            text = "Fruit Recognition",
             fontSize = 28.sp,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.primary,
@@ -170,7 +170,7 @@ fun FlowerRecognitionScreen(modifier: Modifier = Modifier) {
                 if (selectedImageBitmap != null) {
                     Image(
                         bitmap = selectedImageBitmap!!.asImageBitmap(),
-                        contentDescription = "Selected flower image",
+                        contentDescription = "Selected fruit image",
                         modifier = Modifier
                             .fillMaxSize()
                             .clip(RoundedCornerShape(16.dp)),
@@ -280,7 +280,7 @@ fun FlowerRecognitionScreen(modifier: Modifier = Modifier) {
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
-                            text = "Detected Flower",
+                            text = "Detected Fruit",
                             fontSize = 14.sp,
                             color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f)
                         )
@@ -295,7 +295,7 @@ fun FlowerRecognitionScreen(modifier: Modifier = Modifier) {
                     }
                 } else {
                     Text(
-                        text = "Select or capture an image to recognize the flower",
+                        text = "Select or capture an image to recognize the fruit",
                         color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.6f),
                         textAlign = TextAlign.Center
                     )

@@ -19,3 +19,9 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# TensorFlow Lite rules
+-keep class org.tensorflow.lite.** { *; }
+-keepclasseswithmembernames class * {
+    native <methods>;
+}

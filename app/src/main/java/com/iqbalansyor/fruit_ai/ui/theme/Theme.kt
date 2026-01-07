@@ -1,4 +1,4 @@
-package com.iqbalansyor.flower_ai.ui.theme
+package com.iqbalansyor.fruit_ai.ui.theme
 
 import android.app.Activity
 import android.os.Build
@@ -26,7 +26,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun Flower_aiTheme(
+fun Fruit_aiTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
