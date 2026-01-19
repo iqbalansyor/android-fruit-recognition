@@ -56,6 +56,45 @@ app/src/main/
     └── fruit_recognition_model_creation.ipynb  # Training notebook
 ```
 
+## How It Works
+
+The app uses a simple pipeline to recognize fruits and vegetables from images:
+
+```
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│  Image Input    │───▶│  Preprocessing  │───▶│  TFLite Model   │───▶│    Result       │
+│  (Camera/       │    │  - Resize to    │    │  - MobileNetV2  │    │  - Label        │
+│   Gallery)      │    │    150x150      │    │  - 6 classes    │    │  - Confidence % │
+│                 │    │  - Normalize    │    │                 │    │                 │
+└─────────────────┘    │    RGB (0-1)    │    └─────────────────┘    └─────────────────┘
+                       └─────────────────┘
+```
+
+### Step-by-Step Process
+
+1. **Image Capture**: User takes a photo with the camera or selects an image from the gallery. The app uses Android's `ActivityResultContracts` to handle both input methods.
+
+2. **Bitmap Conversion**: The captured/selected image is decoded into a `Bitmap` with `ARGB_8888` config to ensure consistent pixel format for processing.
+
+3. **Preprocessing** (`FruitClassifier.kt`):
+   - **Resize**: The bitmap is scaled to 150x150 pixels to match the model's expected input dimensions
+   - **ByteBuffer Conversion**: Pixel data is extracted and converted to a `ByteBuffer`:
+     - Extract RGB values from each pixel (Android stores as ARGB)
+     - Normalize each channel to 0-1 range by dividing by 255
+     - Store as float32 values in native byte order
+
+4. **Inference**: The TensorFlow Lite interpreter runs the preprocessed data through the MobileNetV2 model, outputting 6 probability scores (one per class).
+
+5. **Post-processing**: The class with the highest probability is selected as the prediction, and both the label and confidence percentage are displayed to the user.
+
+### Key Components
+
+| Component | File | Purpose |
+|-----------|------|---------|
+| UI Layer | `FruitRecognitionScreen.kt` | Jetpack Compose UI with camera/gallery buttons and result display |
+| ML Classifier | `FruitClassifier.kt` | Loads TFLite model, handles preprocessing and inference |
+| Model | `FruitsClassifier.tflite` | MobileNetV2-based classifier (150x150 input, 6-class output) |
+
 ## APK Size
 
 <img src="app/src/main/assets/image/apk_size.png" alt="APK Size" width="500" />
