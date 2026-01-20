@@ -83,7 +83,7 @@ The app uses a simple pipeline to recognize fruits and vegetables from images:
      - Normalize each channel to 0-1 range by dividing by 255
      - Store as float32 values in native byte order
 
-4. **Inference**: The TensorFlow Lite interpreter runs the preprocessed data through the MobileNetV2 model, outputting 6 probability scores (one per class).
+4. **Inference**: The TensorFlow Lite interpreter runs the preprocessed data through the model. The model uses **transfer learning** from MobileNetV2 (pre-trained on ImageNet) with a custom classification head trained on a 6-class fruit/vegetable dataset. This approach leverages MobileNetV2's learned feature extraction while adapting the final layers to recognize the specific classes.
 
 5. **Post-processing**: The class with the highest probability is selected as the prediction, and both the label and confidence percentage are displayed to the user.
 
@@ -93,7 +93,7 @@ The app uses a simple pipeline to recognize fruits and vegetables from images:
 |-----------|------|---------|
 | UI Layer | `FruitRecognitionScreen.kt` | Jetpack Compose UI with camera/gallery buttons and result display |
 | ML Classifier | `FruitClassifier.kt` | Loads TFLite model, handles preprocessing and inference |
-| Model | `FruitsClassifier.tflite` | MobileNetV2-based classifier (150x150 input, 6-class output) |
+| Model | `FruitsClassifier.tflite` | Transfer learning from MobileNetV2, fine-tuned on custom 6-class dataset |
 
 ## APK Size
 
